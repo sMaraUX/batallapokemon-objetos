@@ -4,14 +4,10 @@ class Pokemon {
     this.vida = vida
     this.ataques = ataques
     this.elemento = elemento
+    this.ataques = ataques
     }
         batalla(ataques) { //metodo de batalla
-          const damageElectrico = (this.vida * 0.15) //metodo para calcular daño segun elemento
-          this.vida -= ataques 
-           if (this.elemento == "Agua"){
-           } else { 
-            this.vida -= damageElectrico
-           }
+          
             if(this.vida > 0 ) {
               alert(`${this.nombre} recibio el golpe y sus puntos se redujeron a ${this.vida}`)
             } else {
@@ -22,36 +18,51 @@ class Pokemon {
 }
 
 class Pikachu extends Pokemon {
-  super(nombre, vida, elemento, impactTrueno) {
+  constructor(nombre, vida, elemento, ataques){
+  super(nombre, vida, elemento, ataques) 
   this.impactTrueno = impactTrueno
   }
-
-    impacTrueno(oponente) {
-        console.log(`${this.nombre} ha lanzado un Impact Trueno!`)
-        oponente.batalla(this.impacTrueno)
-      }
+  damageElectrico(elemento) {
+    if (this.elemento == "Agua"){
+   return (this.vida * 0.15) - (Math.floor(Math.random() * ataques.length))
+     }
+  }
 }
 
 class Charmander extends Pokemon {
-  super(nombre, vida, elemento, lanzaLlamas) {
-  this.lanzaLlamas = lanzaLlamas
+  constructor(nombre, vida, elemento, ataques){
+  super(nombre, vida, elemento, ataques) 
+  
   }
-
-    lanzaLlamas(oponente) {
-        console.log(`${this.nombre} ha lanzado Lanzallamas!`)
-        oponente.batalla(this.lanzaLlamas)
-      }
-
-      
+  damageFuego(elemento) {
+    if (this.elemento == "Planta"){
+   return (this.vida * 0.15) - (Math.floor(Math.random() * ataques.length))
+          
+  }
+}
+}
+class Squirtle extends Pokemon {
+  constructor(nombre, vida, elemento, ataques){
+  super(nombre, vida, elemento, ataques) 
+  
+  }
+  damageAgua(elemento) {
+    if (this.elemento == "Fuego"){
+   return (this.vida * 0.15) - (Math.floor(Math.random() * ataques.length))
+     }
+          
+  }
 }
 
-const pikachu = new Pikachu("Pikachu", 1000, "Electrico", [ImpactTrueno = 220, Rayo = 300, Coletazo = 50])
-const charmander = new Charmander("Charmander", 1000, "Fuego", [Lanzallamas = 200, Ascuas = 120, Tackle = 50])
 
-console.log(pikachu.batalla(charmander))
+const pikachu = new Pikachu("Pikachu", 1300, "Electrico", [ImpactTrueno = 220, Rayo = 300, Coletazo = 50])
+const charmander = new Charmander("Charmander", 1250, "Fuego", [Lanzallamas = 200, Ascuas = 120, Tackle = 50])
+const squirtle = new Squirtle("Squirtle", 1200, "Agua", [PistoladeAgua = 210, Burbujas = 150, Tackle = 50])
+
+const pokebola1 = [pikachu, charmander, squirtle]
+/*
 
 class Entrenador {
-  constructor(nombre, pokemons){
      this.nombre = nombre
      this.pokemons = pokemons
      }
