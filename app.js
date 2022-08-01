@@ -6,26 +6,28 @@ class Pokemon {
     this.elemento = elemento
     this.ataques = ataques
     }
-        batalla(ataques) { //metodo de batalla
-          
-            if(this.vida > 0 ) {
-              alert(`${this.nombre} recibio el golpe y sus puntos se redujeron a ${this.vida}`)
-            } else {
-                console.log(`${this.nombre} ha sido derrotado`)
-            }
+        batalla() { //metodo de batalla
+          this.vida - this.ataques
+
+          if(this.vida >= 0 ) {
+            console.log(`${this.nombre} recibio el golpe y sus puntos se redujeron a ${this.vida}`)
+          } else {
+            console.log(`${this.nombre} ha sido derrotado`)
+              
         }   
        
 }
+}
+
 
 class Pikachu extends Pokemon {
   constructor(nombre, vida, elemento, ataques){
   super(nombre, vida, elemento, ataques) 
-  this.impactTrueno = impactTrueno
+  
   }
   damageElectrico(elemento) {
     if (this.elemento == "Agua"){
-   return (this.vida * 0.15) - (Math.floor(Math.random() * ataques.length))
-     }
+      return this.vida - (this.vida * 0.15) - ataques     }
   }
 }
 
@@ -36,8 +38,7 @@ class Charmander extends Pokemon {
   }
   damageFuego(elemento) {
     if (this.elemento == "Planta"){
-   return (this.vida * 0.15) - (Math.floor(Math.random() * ataques.length))
-          
+      return this.vida - (this.vida * 0.15) - ataques
   }
 }
 }
@@ -48,7 +49,7 @@ class Squirtle extends Pokemon {
   }
   damageAgua(elemento) {
     if (this.elemento == "Fuego"){
-   return (this.vida * 0.15) - (Math.floor(Math.random() * ataques.length))
+   return this.vida - (this.vida * 0.15) - ataques
      }
           
   }
@@ -57,9 +58,18 @@ class Squirtle extends Pokemon {
 
 const pikachu = new Pikachu("Pikachu", 1300, "Electrico", [ImpactTrueno = 220, Rayo = 300, Coletazo = 50])
 const charmander = new Charmander("Charmander", 1250, "Fuego", [Lanzallamas = 200, Ascuas = 120, Tackle = 50])
-const squirtle = new Squirtle("Squirtle", 1200, "Agua", [PistoladeAgua = 210, Burbujas = 150, Tackle = 50])
+const squirtle = new Squirtle("Squirtle", 1200, "Agua", [pistoladeAgua = 210, Burbujas = 150, Tackle = 50])
 
 const pokebola1 = [pikachu, charmander, squirtle]
+/*
+do {
+  pikachu.batalla(charmander.Lanzallamas)
+  if(charmander.vidas > 0) {
+      break
+  }
+  squirtle.batalla(pikachu.PistoladeAgua)
+} while(pikachu.vidas > 0)
+
 /*
 
 class Entrenador {
